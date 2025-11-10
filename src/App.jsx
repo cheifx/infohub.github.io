@@ -10,7 +10,7 @@ import Admin from './pages/Admin'
 
 function App() {
   return (
-    <Router>
+    <Router basename="/infohub.github.io">
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <Routes>
