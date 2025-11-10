@@ -9,8 +9,11 @@ import Contact from './pages/Contact'
 import Admin from './pages/Admin'
 
 function App() {
+  // Use basename for production (GitHub Pages), empty for development
+  const basename = import.meta.env.PROD ? '/infohub.github.io' : ''
+  
   return (
-    <Router basename="/infohub.github.io">
+    <Router basename={basename}>
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <Routes>
