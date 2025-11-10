@@ -551,7 +551,7 @@ export let contentData = {
         id: 1,
         title: "Agile Project Management Workshop",
         description: "Join us for an interactive workshop on Agile Project Management fundamentals. Perfect for teams starting their agile journey.",
-        date: "2024-02-15",
+        date: "2025-11-17", // Future date - update as needed
         time: "10:00 AM - 2:00 PM",
         location: "Conference Room A / Online",
         type: "Workshop",
@@ -571,7 +571,7 @@ export let contentData = {
         id: 2,
         title: "Design Thinking Masterclass",
         description: "Learn how to apply Design Thinking to solve complex problems and drive innovation in your projects.",
-        date: "2024-02-20",
+        date: "2025-11-24", // Future date - update as needed
         time: "9:00 AM - 5:00 PM",
         location: "Innovation Lab / Online",
         type: "Masterclass",
@@ -591,7 +591,7 @@ export let contentData = {
         id: 3,
         title: "Digital Transformation Town Hall",
         description: "Quarterly town hall meeting to share progress, celebrate wins, and discuss upcoming initiatives.",
-        date: "2024-03-01",
+        date: "2025-12-10", // Future date - update as needed
         time: "2:00 PM - 4:00 PM",
         location: "Main Auditorium / Online",
         type: "Town Hall",

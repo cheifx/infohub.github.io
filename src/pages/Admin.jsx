@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Save, Eye, Home, Settings, FileText, Users, Briefcase, BookOpen, Mail, Plus, Trash2, GripVertical, Calendar } from 'lucide-react'
+import { Save, Eye, Home, Settings, FileText, Users, Briefcase, BookOpen, Mail, Plus, Trash2, GripVertical, Calendar, Download, Copy } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { contentData, saveContent, loadContent } from '../data/content'
 import SectionEditor from '../components/SectionEditor'
@@ -107,6 +107,65 @@ const Admin = () => {
     window.location.reload()
   }
 
+  const handleExport = () => {
+    // Export content as a downloadable JavaScript file
+    const contentString = JSON.stringify(data, null, 2)
+    const fileContent = `// Content data structure - editable via admin panel
+// Export generated on ${new Date().toISOString()}
+export let contentData = ${contentString}
+
+// Load content from localStorage or use default
+export const loadContent = () => {
+  try {
+    const saved = localStorage.getItem('rptInfoHub_content')
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      // Merge with defaults to ensure all keys exist
+      return { ...contentData, ...parsed }
+    }
+  } catch (error) {
+    console.error('Error loading content:', error)
+  }
+  return contentData
+}
+
+// Save content to localStorage
+export const saveContent = (content) => {
+  try {
+    localStorage.setItem('rptInfoHub_content', JSON.stringify(content))
+    return true
+  } catch (error) {
+    console.error('Error saving content:', error)
+    return false
+  }
+}
+`
+
+    // Create blob and download
+    const blob = new Blob([fileContent], { type: 'text/javascript' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'content.js'
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+    
+    alert('Content exported! Replace src/data/content.js with the downloaded file, then commit and push to GitHub.')
+  }
+
+  const handleCopyToClipboard = () => {
+    // Copy content as JSON to clipboard
+    const contentString = JSON.stringify(data, null, 2)
+    navigator.clipboard.writeText(contentString).then(() => {
+      alert('Content copied to clipboard! You can paste it into src/data/content.js')
+    }).catch(err => {
+      console.error('Failed to copy:', err)
+      alert('Failed to copy to clipboard. Use Export instead.')
+    })
+  }
+
   const tabs = [
     { id: 'landing', label: 'Landing Page', icon: Home },
     { id: 'about', label: 'About', icon: FileText },
@@ -136,17 +195,34 @@ const Admin = () => {
                 <Eye size={18} />
                 <span>View Site</span>
               </button>
-              <button
-                onClick={handleSave}
-                className={`flex items-center space-x-2 px-6 py-2 rounded-lg font-semibold transition-all ${
-                  saved
-                    ? 'bg-green-500 text-white'
-                    : 'bg-primary hover:bg-primary-dark text-white'
-                }`}
-              >
-                <Save size={18} />
-                <span>{saved ? 'Saved!' : 'Save Changes'}</span>
-              </button>
+              <div className="flex items-center space-x-3">
+                <button
+                  onClick={handleSave}
+                  className={`flex items-center space-x-2 px-6 py-2 rounded-lg font-semibold transition-all ${
+                    saved
+                      ? 'bg-green-500 text-white'
+                      : 'bg-primary hover:bg-primary-dark text-white'
+                  }`}
+                >
+                  <Save size={18} />
+                  <span>{saved ? 'Saved!' : 'Save Changes'}</span>
+                </button>
+                <button
+                  onClick={handleExport}
+                  className="flex items-center space-x-2 px-4 py-2 rounded-lg font-semibold bg-gray-700 hover:bg-gray-600 text-white transition-colors"
+                  title="Export content to update GitHub Pages"
+                >
+                  <Download size={18} />
+                  <span>Export</span>
+                </button>
+                <button
+                  onClick={handleCopyToClipboard}
+                  className="flex items-center space-x-2 px-3 py-2 rounded-lg font-semibold bg-gray-600 hover:bg-gray-500 text-white transition-colors"
+                  title="Copy content JSON to clipboard"
+                >
+                  <Copy size={16} />
+                </button>
+              </div>
             </div>
           </div>
         </div>

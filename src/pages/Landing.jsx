@@ -17,8 +17,14 @@ const Landing = () => {
       setNewsItems(loaded.landing.newsItems.map(item => ({ ...item, liked: false })))
     }
     if (loaded.events?.events) {
+      const today = new Date()
+      today.setHours(0, 0, 0, 0)
       const events = loaded.events.events
-        .filter(event => new Date(event.date) >= new Date().setHours(0, 0, 0, 0))
+        .filter(event => {
+          const eventDate = new Date(event.date)
+          eventDate.setHours(0, 0, 0, 0)
+          return eventDate >= today
+        })
         .sort((a, b) => new Date(a.date) - new Date(b.date))
         .slice(0, 3) // Show only next 3 events
       setUpcomingEvents(events)
