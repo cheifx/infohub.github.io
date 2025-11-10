@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Quill Editor Styles */
+.ql-container {
+  font-family: inherit;
+}
+
+.ql-editor {
+  min-height: 200px;
+}
+
+.ql-editor.ql-blank::before {
+  font-style: normal;
+  color: #9ca3af;
+}
+
+/* Prose styles for rendered sections */
+.prose {
+  @apply text-gray-700;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  @apply font-bold text-gray-900;
+}
+
+.prose h1 {
+  @apply text-4xl mb-4;
+}
+
+.prose h2 {
+  @apply text-3xl mb-3;
+}
+
+.prose h3 {
+  @apply text-2xl mb-2;
+}
+
+.prose p {
+  @apply mb-4;
+}
+
+.prose ul, .prose ol {
+  @apply mb-4 pl-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose a {
+  @apply text-primary hover:underline;
+}
+
+.prose img {
+  @apply rounded-lg my-4;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary pl-4 italic my-4;
+}
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-gray-50 via-white to-gray-50 text-gray-900;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gradient-to-r from-primary to-primary-dark hover:from-primary-dark hover:to-primary text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    color: white !important;
+  }
+  
+  .btn-secondary {
+    @apply bg-white hover:bg-gray-50 text-primary border-2 border-primary font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg;
+    color: #0a8276 !important;
+  }
+  
+  .btn-secondary-white {
+    @apply bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-2 border-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg;
+    color: white !important;
+  }
+  
+  .card {
+    @apply bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg p-8 hover:shadow-2xl transition-all duration-300 border border-gray-100;
+  }
+  
+  .card-glow {
+    @apply card;
+    box-shadow: 0 10px 40px rgba(10, 130, 118, 0.1), 0 0 0 1px rgba(10, 130, 118, 0.05);
+  }
+  
+  .card-glow:hover {
+    box-shadow: 0 20px 60px rgba(10, 130, 118, 0.15), 0 0 0 1px rgba(10, 130, 118, 0.1);
+  }
+  
+  .section-title {
+    @apply text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent;
+  }
+  
+  .section-subtitle {
+    @apply text-2xl font-bold text-primary mb-6;
+  }
+  
+  .hero-gradient {
+    background: linear-gradient(135deg, #0a8276 0%, #086b61 50%, #0d9d8e 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-gradient::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  
+  .tech-grid {
+    background-image: 
+      linear-gradient(rgba(10, 130, 118, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(10, 130, 118, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-primary-dark to-primary bg-clip-text text-transparent;
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(10, 130, 118, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(10, 130, 118, 0.6);
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .stat-card {
+    @apply card-glow text-center relative overflow-hidden;
+  }
+  
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #0a8276, #0d9d8e, #0a8276);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+}
+

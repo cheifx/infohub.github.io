@@ -1,0 +1,72 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Outer sphere gradient - dark teal to purple -->
+    <radialGradient id="outerSphere" cx="40%" cy="30%">
+      <stop offset="0%" style="stop-color:#0a8276;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#0d9d8e;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#6b2c91;stop-opacity:0.7" />
+    </radialGradient>
+    
+    <!-- Central white glow -->
+    <radialGradient id="centerGlow" cx="55%" cy="45%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="30%" style="stop-color:#ffffff;stop-opacity:0.9" />
+      <stop offset="60%" style="stop-color:#00d4ff;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#ff00ff;stop-opacity:0" />
+    </radialGradient>
+    
+    <!-- Cyan wave shape gradient -->
+    <linearGradient id="cyanWave" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#00a8cc;stop-opacity:0.4" />
+    </linearGradient>
+    
+    <!-- Magenta wave shape gradient -->
+    <linearGradient id="magentaWave" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff00ff;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#cc00cc;stop-opacity:0.4" />
+    </linearGradient>
+    
+    <!-- Purple accent gradient -->
+    <radialGradient id="purpleAccent" cx="80%" cy="20%">
+      <stop offset="0%" style="stop-color:#9d4edd;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#6b2c91;stop-opacity:0.2" />
+    </radialGradient>
+    
+    <!-- Glow filter for ethereal effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Soft blur for transparency effect -->
+    <filter id="softBlur">
+      <feGaussianBlur stdDeviation="0.5"/>
+    </filter>
+  </defs>
+  
+  <!-- Outer dark translucent sphere -->
+  <circle cx="24" cy="24" r="20" fill="url(#outerSphere)" opacity="0.85"/>
+  
+  <!-- Cyan wave-like shape (top-left to center) -->
+  <ellipse cx="18" cy="18" rx="12" ry="8" fill="url(#cyanWave)" transform="rotate(-25 18 18)" filter="url(#softBlur)"/>
+  
+  <!-- Magenta wave-like shape (bottom-left) -->
+  <ellipse cx="16" cy="28" rx="10" ry="6" fill="url(#magentaWave)" transform="rotate(15 16 28)" filter="url(#softBlur)"/>
+  
+  <!-- Purple accent shape (top-right) -->
+  <ellipse cx="30" cy="16" rx="8" ry="10" fill="url(#purpleAccent)" transform="rotate(45 30 16)" filter="url(#softBlur)"/>
+  
+  <!-- Central bright white glow with lens flare effect -->
+  <circle cx="26" cy="22" r="6" fill="url(#centerGlow)" filter="url(#glow)"/>
+  <circle cx="26" cy="22" r="3" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Additional cyan accent (overlapping) -->
+  <ellipse cx="22" cy="20" rx="8" ry="5" fill="#00d4ff" opacity="0.3" transform="rotate(-10 22 20)" filter="url(#softBlur)"/>
+  
+  <!-- Additional magenta accent (overlapping) -->
+  <ellipse cx="20" cy="26" rx="7" ry="4" fill="#ff00ff" opacity="0.3" transform="rotate(20 20 26)" filter="url(#softBlur)"/>
+</svg>
