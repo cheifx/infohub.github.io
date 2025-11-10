@@ -5,17 +5,7 @@
     <title>Redirecting...</title>
     <script>
       // Single Page Apps for GitHub Pages
-      // https://github.com/rafgraph/spa-github-pages
-      // This script takes the current url and converts the path and query
-      // string into just a query string, and then redirects the browser
-      // to the new url with only a query string and hash fragment,
-      // e.g., https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
-      // https://www.foo.tld/?/one/two&a=b~and~c=d#qwe
-      // Note: this 404.html file must be at least 512 bytes for some
-      // browsers to recognize it as a valid 404 page.
-
-      var pathSegmentsToKeep = 1; // Keep the base path segment
-
+      var pathSegmentsToKeep = 1;
       var l = window.location;
       var path = l.pathname;
       
@@ -24,10 +14,15 @@
         path = path.replace('/infohub.github.io', '');
       }
       
-      // Build the redirect URL
-      var redirectPath = path.split('/').slice(1).slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') || '';
+      // Get the path after the base (e.g., /admin from /infohub.github.io/admin)
+      var pathParts = path.split('/').filter(function(part) {
+        return part && part !== 'infohub.github.io';
+      });
+      var redirectPath = pathParts.join('/');
+      
+      // Build the redirect URL with path as query parameter
       var redirectUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        '/infohub.github.io/?' + redirectPath +
+        '/infohub.github.io/?' + (redirectPath ? '/' + redirectPath : '') +
         (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
         l.hash;
       

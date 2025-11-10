@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Landing from './pages/Landing'
 import About from './pages/About'
@@ -9,29 +9,40 @@ import Events from './pages/Events'
 import Contact from './pages/Contact'
 import Admin from './pages/Admin'
 
-function App() {
-  // Use basename for production (GitHub Pages), empty for development
-  const basename = import.meta.env.PROD ? '/infohub.github.io' : ''
+// Component to handle 404 redirect
+function RedirectHandler() {
+  const navigate = useNavigate()
+  const location = useLocation()
   
-  // Handle redirect from 404.html for GitHub Pages SPA routing
   useEffect(() => {
+    // Only run in production (GitHub Pages)
     if (import.meta.env.PROD) {
       const search = window.location.search
       if (search && search.startsWith('?')) {
-        // Extract path from query string (format: ?/admin or ?/admin&other=params)
+        // Extract path from query string (format: ?/admin)
         const path = search.slice(1).split('&')[0].replace(/~and~/g, '&')
         if (path && path.startsWith('/')) {
           // Remove the base path if it's in the path
           const cleanPath = path.replace('/infohub.github.io', '')
-          const newPath = basename + cleanPath + window.location.hash
-          window.history.replaceState(null, '', newPath)
+          // Only navigate if we're not already on that path
+          if (location.pathname !== cleanPath) {
+            navigate(cleanPath, { replace: true })
+          }
         }
       }
     }
-  }, [basename])
+  }, [navigate, location.pathname])
+  
+  return null
+}
+
+function App() {
+  // Use basename for production (GitHub Pages), empty for development
+  const basename = import.meta.env.PROD ? '/infohub.github.io' : ''
   
   return (
     <Router basename={basename}>
+      <RedirectHandler />
       <div className="min-h-screen bg-gray-50">
         <Navigation />
         <Routes>
