@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script>
+      // Single Page Apps for GitHub Pages
+      // https://github.com/rafgraph/spa-github-pages
+      // This script takes the current url and converts the path and query
+      // string into just a query string, and then redirects the browser
+      // to the new url with only a query string and hash fragment,
+      // e.g., https://www.foo.tld/one/two?a=b&c=d#qwe, becomes
+      // https://www.foo.tld/?/one/two&a=b~and~c=d#qwe
+      // Note: this 404.html file must be at least 512 bytes for some
+      // browsers to recognize it as a valid 404 page.
+
+      var pathSegmentsToKeep = 1; // Keep the base path segment
+
+      var l = window.location;
+      var path = l.pathname;
+      
+      // Remove the base path /infohub.github.io/ if present
+      if (path.startsWith('/infohub.github.io/')) {
+        path = path.replace('/infohub.github.io', '');
+      }
+      
+      // Build the redirect URL
+      var redirectPath = path.split('/').slice(1).slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') || '';
+      var redirectUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        '/infohub.github.io/?' + redirectPath +
+        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+        l.hash;
+      
+      l.replace(redirectUrl);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html>
+
