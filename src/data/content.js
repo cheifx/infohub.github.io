@@ -3,7 +3,7 @@
 export let contentData = {
   "landing": {
     "hero": {
-      "title": "Welcome to RPT Digitalization Platform",
+      "title": "Welcome to RPT Digitalization Hub",
       "subtitle": "Your central hub for digital transformation news, initiatives, and resources. Stay connected, stay informed, and be part of the change.",
       "ctaPrimary": "Explore News Feed",
       "ctaSecondary": "View Initiatives"
@@ -76,7 +76,7 @@ export let contentData = {
   "about": {
     "hero": {
       "title": "About the Transformation",
-      "subtitle": "We aim to transform RPT into a digital lab with focus on speed, lower costs w/o compromise in quality."
+      "subtitle": "We aim to transform RPT into a digital lab with focus on speed, lower costs without compromise in quality."
     },
     "sections": [],
     "vision": "The Digital RPT Lab\n- is a data driven organization with a clear data strategy.\n- uses standardized interfaces for easy connection and integration with other systems (interoperability). It includes equipment connectivity and cloud storage. This enables E2E integration with other digital tools and services and speeds up cycle time and T2M.\n- includes tools for data storage, analysis, visualization. \n- is able to manage large datasets and provides predictive solutions.\n- can be easily scaled to fit different needs/requirements. By this it enables efficient planning, fast execution / data assessment and reporting.",
