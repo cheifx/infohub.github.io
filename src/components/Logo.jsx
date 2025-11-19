@@ -14,7 +14,7 @@ const Logo = ({ size = 'default', variant = 'light' }) => {
   return (
     <Link to="/" className="group">
       <span className={`font-bold ${textColor} transition-colors leading-tight ${sizeClasses[size]}`}>
-        RPT Digitalization Platform
+        RPT Digitalization Hub
       </span>
     </Link>
   )
